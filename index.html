@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WS console</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+	<div id="maincont">
+		<span id="control">
+			<form id="srv">
+				<label for="srvi">Server </label>
+				<input type="text" name="srvi" id="srvi" value="ws://localhost">
+				<label for="port">Port </label>
+				<input type="number" name="port" id="port" min="0" max="65535" step="1">
+				<svg id="sem" width="24" height="24">
+					<circle id="bulb" cx="14" cy="14" r="8" stroke="black" stroke-width="3" fill="gray" />
+				</svg>
+				<input type="submit" id="conn" value="Connect">
+				<button id="closecon" autocomplete="off" disabled>Close</button>
+			</form>
+			<span class="divi"> | Mode:</span>
+			<form id="mode" autocomplete="off">
+				<!-- Unused 'raw' mode -->
+				<!-- <input type="radio" id="raw" name="inp"> -->
+				<!-- <label for="raw">Raw</label> -->
+				<input type="radio" id="cmd" name="inp" checked>
+				<label for="cmd">Command</label>
+				<input type="radio" id="pwd" name="inp">
+				<label for="pwd">Password</label>
+			</form>
+			<span class="divi"> | Settings:</span>
+			<input name="ctl" type="checkbox" id="cla" checked>
+			<label for="cla">Clear input after sending</label>
+			<input name="ctl" type="checkbox" id="cli" checked>
+			<label for="cli">CTRL+- clears input</label>
+			<input name="ctl" type="checkbox" id="clr" checked>
+			<label for="clr">CTRL+- clears screen</label>
+			<input name="ctl" type="checkbox" id="dis" checked>
+			<label for="dis">CTRL+- disconnects</label>
+		</span>
+		<span id="msgbox">
+Connect to a WebSocket server using the panel above, connection state is shown by the circle. Type 'clear' (when connected) to clear this console.
+gray = no connection, red = connection unexpectedly closed/problem, yellow = connecting, green = connected
+</span>
+		<span id="jsupport">This application requires JavaScript to run.</span>
+		<form id="msg"><span id="prompt">#</span><input type="text" id="req" autocomplete="off" disabled>
+			<input type="submit" id="msgs" value="Send" style="display:none" disabled>
+		</form>
+	</div>
+<!-- body end -->
+<script src="jquery-3.5.1.min.js"></script>
+<script src="websole.js"></script>
+</body>
+</html>
