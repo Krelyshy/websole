@@ -74,11 +74,11 @@ $(function() {
       socket = new WebSocket(host);
       socket.onclose = function(event) {
         if (event.wasClean) {
-          mess('Connection to ' + host + ' closed', con);
+          mess('Connection to ' + host + ' closed, code: ' + event.code + ' reason: ' + event.reason', con);
         } else {
           // e.g. server process killed or network down
           // event.code is usually 1006 in this case
-          mess('Connection to ' + host + ' unexpectedly closed or connecting failed, error code: ' + event.code, err);
+          mess('Connection to ' + host + ' unexpectedly closed or connecting failed, error code: ' + event.code + ' reason: ' + event.reason, err);
           connen(true);
         }
       };
