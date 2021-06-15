@@ -81,6 +81,7 @@ $(function() {
           mess('Connection to ' + host + ' unexpectedly closed or connecting failed, error code: ' + event.code + ' reason: ' + event.reason, err);
           connen(true);
         }
+        disconnect();
       };
 
       socket.onerror = function() {
