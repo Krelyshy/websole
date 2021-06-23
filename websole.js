@@ -75,7 +75,6 @@ $(function() {
       socket.onclose = function(event) {
         if (event.wasClean) {
           mess('Connection to ' + host + ' closed, code: ' + event.code + ' reason: ' + event.reason, con);
-          connen(true);
           sem('gray');
         } else {
           // e.g. server process killed or network down
@@ -83,7 +82,7 @@ $(function() {
           mess('Connection to ' + host + ' unexpectedly closed or connecting failed, error code: ' + event.code + ' reason: ' + event.reason, err);
           sem('red');
         }
-        disconnected();
+        connen(true);
       };
 
       socket.onerror = function() {
