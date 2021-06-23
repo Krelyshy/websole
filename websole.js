@@ -75,16 +75,20 @@ $(function() {
       socket.onclose = function(event) {
         if (event.wasClean) {
           mess('Connection to ' + host + ' closed, code: ' + event.code + ' reason: ' + event.reason, con);
+          connen(true);
+          sem('gray');
         } else {
           // e.g. server process killed or network down
           // event.code is usually 1006 in this case
           mess('Connection to ' + host + ' unexpectedly closed or connecting failed, error code: ' + event.code + ' reason: ' + event.reason, err);
+          sem('red');
         }
         disconnected();
       };
 
       socket.onerror = function() {
         mess('An error occured, check console for details!', err);
+        sem('red');
       };
 
       socket.onopen = function() {
@@ -166,13 +170,7 @@ function clr() {
 function disconnect() {
   mess('Disconnecting ' + host, con);
   socket.close();
-  disconnected();
-}
-
-//// Disconnected from server
-function disconnected() {
   sem('gray');
-  connen(true);
 }
 
 //// Enable / disable connection / disconnection menus and buttons
