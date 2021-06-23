@@ -79,9 +79,8 @@ $(function() {
           // e.g. server process killed or network down
           // event.code is usually 1006 in this case
           mess('Connection to ' + host + ' unexpectedly closed or connecting failed, error code: ' + event.code + ' reason: ' + event.reason, err);
-          connen(true);
         }
-        disconnect();
+        disconnected();
       };
 
       socket.onerror = function() {
@@ -166,9 +165,14 @@ function clr() {
 //// Disconnect from server
 function disconnect() {
   mess('Disconnecting ' + host, con);
+  socket.close();
+  disconnected();
+}
+
+//// Disconnected from server
+function disconnected() {
   sem('gray');
   connen(true);
-  socket.close();
 }
 
 //// Enable / disable connection / disconnection menus and buttons
