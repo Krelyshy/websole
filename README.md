@@ -5,3 +5,5 @@ Simply connect to a websocket server and send your commands! All received messag
 There are 2 input types available: command and password. Command mode simply sends what you enter to the server, password mode hides the input and protects it from being snitched out. Right now the password mode does not send anything to the server, but you can change that and you can easily add your own input modes.
 
 I used jQuery a lot, so it is a required dependency.
+
+Please don't hate me, I will remake it in vanilla JS soon... hopefully...
