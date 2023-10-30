@@ -176,7 +176,7 @@ function disconnect() {
 //// Enable / disable connection / disconnection menus and buttons
 function connen(toggle) {
   $('#srvi').prop('disabled', !toggle);
-  $('#port').prop('disabled', !toggle);
+  //$('#port').prop('disabled', !toggle);
   $('#conn').prop('disabled', !toggle);
   $('#closecon').prop('disabled', toggle);
   // disable request sending
