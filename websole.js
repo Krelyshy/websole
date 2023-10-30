@@ -62,15 +62,16 @@ $(function() {
     host = $('#srvi').val();
 
     if (host == '') mess('Host not specified', err);
-    else if ($('#port').val() == '') mess('Port not specified', err);
-    else if ((host.indexOf('ws://') != 0) && (host.indexOf('wss://') != 0)) mess('Invalid host. Maybe missing wss:// or ws://?', err);
+    // else if ($('#port').val() == '') mess('Port not specified', err);
+    else if ((host.indexOf('ws://') != 0) && (host.indexOf('wss://') != 0)) mess('Invalid host. Missing protocol specification (wss:// or ws://).', err);
     else {
-      host = $('#srvi').val() + ':' + $('#port').val();
+      //host = $('#srvi').val() + ':' + $('#port').val();
+      host = $('#srvi').val();
+      if (host.indexOf('ws://') == 0) mess('Alert! You are using an unsafe protocol (ws://). Usage of this protocol is discouraged, use wss:// instead.', warn);
       mess('Connecting to ' + host, cof);
       sem('yellow');
       connen(false);
-      if (host.indexOf('ws://') == 0) mess('Alert! You are using an unsafe protocol (ws://). Usage of this protocol is discouraged, use wss:// instead.', warn);
-
+      
       socket = new WebSocket(host);
       socket.onclose = function(event) {
         if (event.wasClean) {
